@@ -3,89 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - SageStocks</title>
+    <title>Terms of Service — SageStocks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --black: #050505;
+            --surface: #0a0a0a;
+            --surface-2: #111113;
+            --surface-3: #1a1a1e;
+            --green: #00d672;
+            --green-dim: #00d67233;
+            --green-glow: #00d67215;
+            --amber: #ffb020;
+            --amber-dim: #ffb02033;
+            --text: #e8e8ed;
+            --text-dim: #6e6e78;
+            --text-muted: #3a3a42;
+            --border: #1e1e24;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-            color: #1d1d1f;
-            background: #fff;
-            line-height: 1.6;
+            font-family: var(--font-body);
+            background: var(--black);
+            color: var(--text);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 48px 24px 80px;
+
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
         }
-        h1 {
-            font-size: 32px;
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(5, 5, 5, 0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 8px;
+            color: var(--text);
+            text-decoration: none;
             letter-spacing: -0.5px;
         }
+
+        .nav-logo span { color: var(--green); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+        .nav-links a.active { color: var(--green); }
+
+        /* ── Page header ── */
+        .page-header {
+            position: relative;
+            z-index: 1;
+            padding: 140px 40px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--border);
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
         .effective-date {
-            font-size: 14px;
-            color: #86868b;
-            margin-bottom: 40px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
-        h2 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-top: 36px;
-            margin-bottom: 12px;
-            letter-spacing: -0.3px;
+
+        /* ── Content ── */
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 48px 40px 120px;
         }
-        p, li {
+
+        .content p {
             font-size: 16px;
-            color: #1d1d1f;
-            margin-bottom: 12px;
-        }
-        ul, ol {
-            padding-left: 24px;
+            line-height: 1.75;
+            color: var(--text-dim);
             margin-bottom: 16px;
         }
-        li { margin-bottom: 6px; }
-        a { color: #0071e3; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 24px;
-            font-size: 14px;
+
+        .content h2 {
+            font-family: var(--font-body);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            letter-spacing: -0.3px;
         }
+
+        .content h2 .num {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--green);
+            margin-right: 12px;
+            letter-spacing: 1px;
+        }
+
+        .content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .content ul li {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-dim);
+            padding: 8px 0 8px 24px;
+            position: relative;
+        }
+
+        .content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            opacity: 0.6;
+        }
+
+        .content strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .content a {
+            color: var(--green);
+            text-decoration: none;
+            border-bottom: 1px solid var(--green-dim);
+            transition: border-color 0.3s ease;
+        }
+
+        .content a:hover { border-color: var(--green); }
+
+        /* ── Disclaimer callout ── */
         .disclaimer {
-            background: #f5f5f7;
-            border-radius: 12px;
-            padding: 20px 24px;
+            background: var(--surface-2);
+            border: 1px solid var(--amber-dim);
+            border-left: 3px solid var(--amber);
+            border-radius: 0 12px 12px 0;
+            padding: 24px 28px;
             margin: 24px 0;
         }
-        @media (prefers-color-scheme: dark) {
-            body { background: #000; color: #f5f5f7; }
-            p, li { color: #f5f5f7; }
-            .effective-date { color: #86868b; }
-            .disclaimer { background: #1c1c1e; }
+
+        .disclaimer p {
+            color: var(--text) !important;
+            margin-bottom: 0 !important;
+            font-size: 15px !important;
+        }
+
+        .disclaimer-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .contact-block {
+            margin-top: 16px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .contact-block p {
+            margin-bottom: 0 !important;
+            color: var(--text) !important;
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--green); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .nav-links { gap: 20px; }
+            .nav-links a { font-size: 11px; }
+            .page-header { padding: 110px 20px 40px; }
+            .content { padding: 32px 20px 80px; }
+            footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">&larr; SageStocks</a>
-        <h1>Terms of Service</h1>
-        <p class="effective-date">Effective date: April 10, 2026</p>
 
+    <div class="grid-bg"></div>
+
+    <nav>
+        <a href="index.html" class="nav-logo">Sage<span>Stocks</span></a>
+        <div class="nav-links">
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html" class="active">Terms</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Terms of Service</h1>
+        <p class="effective-date">Effective April 10, 2026</p>
+    </header>
+
+    <main class="content">
         <p>These Terms of Service ("Terms") govern your use of the SageStocks mobile application ("App") operated by Florin ("we", "our"). By using the App, you agree to these Terms.</p>
 
-        <h2>1. Acceptance of Terms</h2>
+        <h2><span class="num">01</span>Acceptance of Terms</h2>
         <p>By downloading, installing, or using SageStocks, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
 
-        <h2>2. Description of Service</h2>
+        <h2><span class="num">02</span>Description of Service</h2>
         <p>SageStocks provides AI-generated stock price predictions, market data, and related financial information for US and EU equities. The App uses machine learning models to analyze publicly available market data and generate directional predictions.</p>
 
         <div class="disclaimer">
-            <p><strong>Important Disclaimer:</strong> SageStocks is an informational tool only. Predictions generated by the App are based on machine learning models and historical data. They are not financial advice, investment recommendations, or guarantees of future performance. You should not make investment decisions based solely on information provided by the App.</p>
+            <span class="disclaimer-label">Important Disclaimer</span>
+            <p>SageStocks is an informational tool only. Predictions generated by the App are based on machine learning models and historical data. They are not financial advice, investment recommendations, or guarantees of future performance. You should not make investment decisions based solely on information provided by the App.</p>
         </div>
 
-        <h2>3. Not Financial Advice</h2>
+        <h2><span class="num">03</span>Not Financial Advice</h2>
         <p>The content provided through SageStocks, including but not limited to stock predictions, accuracy metrics, and market data:</p>
         <ul>
             <li>Does not constitute financial, investment, tax, or legal advice</li>
@@ -95,13 +334,13 @@
         </ul>
         <p>Always consult a qualified financial advisor before making investment decisions. Past prediction accuracy does not guarantee future results.</p>
 
-        <h2>4. Eligibility</h2>
+        <h2><span class="num">04</span>Eligibility</h2>
         <p>You must be at least 17 years old to use SageStocks. By using the App, you represent that you meet this age requirement.</p>
 
-        <h2>5. Account and Authentication</h2>
+        <h2><span class="num">05</span>Account & Authentication</h2>
         <p>To use SageStocks, you must sign in using Apple Sign-In. You are responsible for maintaining the security of your Apple ID and any activity that occurs under your account. You agree to notify us immediately of any unauthorized use.</p>
 
-        <h2>6. Acceptable Use</h2>
+        <h2><span class="num">06</span>Acceptable Use</h2>
         <p>You agree not to:</p>
         <ul>
             <li>Use the App for any unlawful purpose, including insider trading or market manipulation</li>
@@ -112,16 +351,16 @@
             <li>Interfere with or disrupt the App's infrastructure</li>
         </ul>
 
-        <h2>7. Intellectual Property</h2>
+        <h2><span class="num">07</span>Intellectual Property</h2>
         <p>All content, features, machine learning models, predictions, and functionality of the App are owned by us and are protected by intellectual property laws. You may not copy, modify, distribute, or create derivative works based on the App without our written permission.</p>
 
-        <h2>8. Subscriptions and Payments</h2>
+        <h2><span class="num">08</span>Subscriptions & Payments</h2>
         <p>SageStocks may offer premium features through in-app subscriptions. Subscriptions are billed through Apple and are subject to Apple's terms and conditions for auto-renewable subscriptions. You can manage or cancel subscriptions in your Apple ID settings.</p>
 
-        <h2>9. Data and Accuracy</h2>
+        <h2><span class="num">09</span>Data & Accuracy</h2>
         <p>Market data displayed in the App is sourced from publicly available third-party providers. While we strive for accuracy, we do not guarantee the completeness, timeliness, or accuracy of any data or predictions. Market data may be delayed.</p>
 
-        <h2>10. Limitation of Liability</h2>
+        <h2><span class="num">10</span>Limitation of Liability</h2>
         <p>To the maximum extent permitted by law:</p>
         <ul>
             <li>SageStocks is provided "as is" and "as available" without warranties of any kind</li>
@@ -130,24 +369,35 @@
             <li>Our total liability shall not exceed the amount you paid for the App in the 12 months preceding the claim</li>
         </ul>
 
-        <h2>11. Indemnification</h2>
+        <h2><span class="num">11</span>Indemnification</h2>
         <p>You agree to indemnify and hold us harmless from any claims, damages, or expenses arising from your use of the App, your violation of these Terms, or your investment decisions.</p>
 
-        <h2>12. Termination</h2>
+        <h2><span class="num">12</span>Termination</h2>
         <p>We may suspend or terminate your access to the App at any time for violation of these Terms. You may stop using the App at any time by signing out and deleting it from your device.</p>
 
-        <h2>13. Changes to Terms</h2>
+        <h2><span class="num">13</span>Changes to Terms</h2>
         <p>We may modify these Terms at any time. Material changes will be communicated through the App. Continued use after changes constitutes acceptance of the updated Terms.</p>
 
-        <h2>14. Governing Law</h2>
+        <h2><span class="num">14</span>Governing Law</h2>
         <p>These Terms are governed by the laws of Romania. Any disputes arising from these Terms shall be resolved in the courts of Romania, without regard to conflict of law provisions.</p>
 
-        <h2>15. Severability</h2>
+        <h2><span class="num">15</span>Severability</h2>
         <p>If any provision of these Terms is found unenforceable, the remaining provisions shall continue in full force and effect.</p>
 
-        <h2>16. Contact Us</h2>
-        <p>If you have questions about these Terms, contact us at:</p>
-        <p><strong>Email:</strong> support@sagestocks.app</p>
-    </div>
+        <h2><span class="num">16</span>Contact Us</h2>
+        <p>If you have questions about these Terms:</p>
+        <div class="contact-block">
+            <p>support@sagestocks.app</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-left">&copy; 2026 SageStocks</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </footer>
+
 </body>
 </html>
